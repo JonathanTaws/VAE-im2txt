@@ -1,6 +1,5 @@
 import os, urllib
 from pycocotools.coco import COCO
-import numpy as np
 
 MSCOCO_URL = 'http://mscoco.org/images/'
 
