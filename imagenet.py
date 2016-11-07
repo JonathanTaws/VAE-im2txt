@@ -59,12 +59,14 @@ class VGGLoader:
         net['fc8'] = DenseLayer(net['fc7_dropout'], num_units=1000, nonlinearity=None)
         net['prob'] = NonlinearityLayer(net['fc8'], softmax)
 
+        # Remove the trainable argument from the layers that can potentially have it
         for key, val in net.iteritems():
             if not ('dropout' or 'pool' in key):
                 net[key].params[net[key].W].remove("trainable")
                 net[key].params[net[key].b].remove("trainable")
 
         return net
+
 
     def prep_image(self, url):
         # ext = url.split('.')[-1]
