@@ -15,6 +15,10 @@ from vae import VAEHelper
 NUM_LATENT_Z = 2
 NUM_CLASSES = 4
 
+TRAIN_FILE = 'x_train_100Samples.p'
+VALIDATION_FILE = 'x_train_100SamplesValidation.p'
+TARGET_FILE = 'targets_train_100Samples.p'
+TARGET_VALIDATION_FILE = 'targets_train_100SamplesValidation.p'
 
 def create_network():
     net = {}
@@ -184,11 +188,23 @@ def training_loop(x_train, x_valid, targets_valid):
     except KeyboardInterrupt:
         pass
 
+def load_data():
+    x_train = pickle.load(TRAIN_FILE)
+    x_valid = pickle.load(VALIDATION_FILE)
+    targets_valid = pickle.load(TARGET_VALIDATION_FILE)
+
+    return x_train, x_valid, targets_valid
+
 if __name__ == '__main__':
     # Create network
-    create_network()
+    net = create_network()
 
     f_train, f_eval, f_z, f_sample, f_recon = VAEHelper.create_theano_functions(net)
+
+    # TODO : Call function to get the data
+    x_train, x_valid, targets_valid = load_data()
+
+    training_loop(x_train, x_valid, targets_valid)
 
 
 
