@@ -1,3 +1,8 @@
 coco/images/*
 coco/annotations/*
+coco/*
 .idea
+*.pyc
+*.p
+.ipynb_checkpoints/*
+*.pkl

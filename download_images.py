@@ -25,7 +25,7 @@ def download_images(coco):
         cat_ids = coco.getCatIds(catNms=label)
         img_ids = coco.getImgIds(catIds=cat_ids)
         imgs = coco.loadImgs(img_ids[:NB_IMG])
-
+	
         directory = data_dir + '/images/' + label + '/'
         if not os.path.exists(directory):
             os.makedirs(directory)
@@ -57,6 +57,24 @@ def get_images_filenames(coco):
             # Download the image and place it in the file
 
             urllib.urlretrieve(MSCOCO_URL + '/%d' % img['id'], filename)
+
+def get_images_filenames(coco):
+    images_labels = defaultdict([0] * len(labels))
+
+    for label, idx in labels.iteritems():
+        cat_ids = coco.getCatIds(catNms=label)
+        img_ids = coco.getImgIds(catIds=cat_ids)
+        imgs = coco.loadImgs(img_ids[:NB_IMG])
+	
+
+	print cat_ids	
+
+        for img in imgs:
+	    print img
+            filename = img['file_name']
+
+
+
 
 if __name__ == "__main__":
     coco = init_COCO()
