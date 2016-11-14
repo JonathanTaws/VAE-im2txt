@@ -1,3 +1,6 @@
 coco/images/*
 coco/annotations/*
+coco/*
 .idea
+*.pyc
+*.p
