@@ -7,7 +7,8 @@ class VAEHelper:
 
     @staticmethod
     def create_theano_functions(net):
-        sym_x = T.matrix('x')
+        #sym_x = T.matrix('x')
+        sym_x = T.tensor4('x')
         sym_z = T.matrix('z')
 
         z_train, muq_train, logvarq_train = get_output([net['z_vae'], net['muq_vae'], net['logvarq_vae']],
